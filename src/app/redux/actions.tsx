@@ -1,27 +1,7 @@
-import { AppDispatch, AppState, User } from "@/types/reduxUser";
+import { ReduxActionType } from "@/types/enum";
+import { AppDispatch, AppState, FetchUserFailureAction, FetchUserRequestAction, FetchUserSuccessAction, User, UserAction } from "@/types/reduxUser";
 import { ThunkAction } from "redux-thunk";
 
-export enum ReduxActionType {
-    FETCH_USER_REQUEST = "FETCH_USER_REQUEST",
-    FETCH_USER_SUCCESS = "FETCH_USER_SUCCESS",
-    FETCH_USER_FAILURE = "FETCH_USER_FAILURE",
-}
-
-interface FetchUserRequestAction {
-    type: ReduxActionType.FETCH_USER_REQUEST;
-}
-
-interface FetchUserSuccessAction {
-    type: ReduxActionType.FETCH_USER_SUCCESS;
-    payload: User;
-}
-
-interface FetchUserFailureAction {
-    type: ReduxActionType.FETCH_USER_FAILURE;
-    payload: string;
-}
-
-export type UserAction = FetchUserRequestAction | FetchUserSuccessAction | FetchUserFailureAction;
 
 export const fetchUserRequest = (): FetchUserRequestAction => ({
     type: ReduxActionType.FETCH_USER_REQUEST,

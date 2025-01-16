@@ -1,11 +1,6 @@
-import { AppState } from "@/types/reduxUser";
+import { ReduxActionType } from "@/types/enum";
+import { AppState, UserAction } from "@/types/reduxUser";
 import React, { createContext, useReducer, useContext, ReactNode, Dispatch } from "react";
-
-// 액션 타입 정의
-type UserAction =
-    | { type: "FETCH_USER_REQUEST" }
-    | { type: "FETCH_USER_SUCCESS"; payload: { name: string; email: string } }
-    | { type: "FETCH_USER_FAILURE"; payload: string };
 
 // 초기 상태
 const initialState: AppState = {
@@ -15,13 +10,13 @@ const initialState: AppState = {
 };
 
 // 리듀서 정의
-const userReducer = (state: AppState, action: UserAction): AppState => {
+const userReducer = (state = initialState, action: UserAction) => {
     switch (action.type) {
-        case "FETCH_USER_REQUEST":
-            return { ...state, loading: true, error: null };
-        case "FETCH_USER_SUCCESS":
+        case ReduxActionType.FETCH_USER_REQUEST:
+            return { ...state, loading: true };
+        case ReduxActionType.FETCH_USER_SUCCESS:
             return { ...state, loading: false, user: action.payload };
-        case "FETCH_USER_FAILURE":
+        case ReduxActionType.FETCH_USER_FAILURE:
             return { ...state, loading: false, error: action.payload };
         default:
             return state;

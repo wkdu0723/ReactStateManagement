@@ -1,5 +1,5 @@
-import { AppState } from "@/types/reduxUser";
-import { ReduxActionType, UserAction } from "./actions";
+import { AppState, UserAction } from "@/types/reduxUser";
+import { ReduxActionType } from "@/types/enum";
 
 const initialState: AppState = {
     loading: false,

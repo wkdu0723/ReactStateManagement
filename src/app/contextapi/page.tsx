@@ -3,6 +3,7 @@
 import React, { useEffect } from "react";
 import { fetchUserApi } from "./api";
 import { useUserContext } from "./userContext";
+import { ReduxActionType } from "@/types/enum";
 
 export default function ContextApiPage() {
     const { state, dispatch } = useUserContext();
@@ -10,12 +11,12 @@ export default function ContextApiPage() {
 
     useEffect(() => {
         const fetchUser = async () => {
-            dispatch({ type: "FETCH_USER_REQUEST" });
+            dispatch({ type: ReduxActionType.FETCH_USER_REQUEST });
             try {
                 const data = await fetchUserApi();
-                dispatch({ type: "FETCH_USER_SUCCESS", payload: { name: data.name, email: data.email } });
+                dispatch({ type: ReduxActionType.FETCH_USER_SUCCESS, payload: { name: data.name, email: data.email } });
             } catch (err) {
-                if (err instanceof Error) dispatch({ type: "FETCH_USER_FAILURE", payload: err.message });
+                if (err instanceof Error) dispatch({ type: ReduxActionType.FETCH_USER_FAILURE, payload: err.message });
             }
         };
 
