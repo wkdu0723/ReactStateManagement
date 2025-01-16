@@ -1,12 +1,7 @@
-import { ReduxActionType, User, UserAction } from "./actions";
+import { AppState } from "@/types/reduxUser";
+import { ReduxActionType, UserAction } from "./actions";
 
-export type State = {
-    loading: boolean;
-    user: User | null;
-    error: string | null;
-};
-
-const initialState: State = {
+const initialState: AppState = {
     loading: false,
     user: null,
     error: null,

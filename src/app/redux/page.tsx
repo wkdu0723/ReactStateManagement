@@ -1,12 +1,22 @@
 "use client";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { AppDispatch, fetchUser } from "./actions";
-import { State } from "./reducer";
+import { fetchUser } from "./actions";
+import { AppDispatch, AppState } from "@/types/reduxUser";
 
+/** redux를 사용 */
 export default function ReduxPage() {
     const dispatch = useDispatch<AppDispatch>();
-    const { loading, user, error } = useSelector((state: State) => state);
+    /**
+     * 이렇게 모든 state를 여러개 가지고 올 경우 경고가 뜨게됨
+     * Selector unknown returned the root state when called. This can lead to unnecessary rerenders.
+       Selectors that return the entire state are almost certainly a mistake, as they will cause a rerender whenever *anything* in state changes.
+       useSelector는 범위를 지정해서 가지고 와야함 보통 하나씩 1:1대응하는것을 추천.
+     * */
+    // const { loading, user, error } = useSelector((state: AppState) => state);
+    const loading = useSelector((state: AppState) => state.loading);
+    const user = useSelector((state: AppState) => state.user);
+    const error = useSelector((state: AppState) => state.error);
 
     useEffect(() => {
         dispatch(fetchUser());
