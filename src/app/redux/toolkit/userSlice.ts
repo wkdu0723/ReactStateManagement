@@ -1,4 +1,3 @@
-// import { AppState } from "@/types/reduxUser";
 import { AppState } from "@/types/reduxUser";
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
